@@ -12,7 +12,7 @@ public class FlashlightScript : MonoBehaviour
     bool flashlightCanBeEnabled = true;
 
     public float batteryPercent = 100f;
-    public float drainSpeed = 1f;
+    public float drainSpeed = 5f;
 
     [SerializeField] Slider batterySlider;
 
