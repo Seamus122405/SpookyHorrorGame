@@ -13,6 +13,8 @@ public class SprintScript : MonoBehaviour
     public float energyDrain = 5f;
 
     [SerializeField] Image sprintFill;
+    public Color sprintFillGreen;
+    public Color sprintFillRed;
 
     Coroutine refillCoroutine;
     bool isRefilling = false;
@@ -62,9 +64,13 @@ public class SprintScript : MonoBehaviour
 
     IEnumerator RefillSprint(bool refillfromZero)
     {
-        print("coroutine");
         isRefilling = true;
-        if (refillfromZero) { controller.SprintSpeed = controller.MoveSpeed; canSprint = false; }
+        if (refillfromZero) 
+        { 
+            controller.SprintSpeed = controller.MoveSpeed; 
+            canSprint = false; 
+            sprintFill.color = sprintFillRed;
+        }
         yield return new WaitForSeconds(0.5f);
 
         while (energyPercent < 100f)
@@ -76,7 +82,12 @@ public class SprintScript : MonoBehaviour
 
         energyPercent = 100f;
         sprintFill.fillAmount = 1f;
-        if (refillfromZero) { controller.SprintSpeed = sprintSpeed; canSprint = true; }
+        if (refillfromZero) 
+        { 
+            controller.SprintSpeed = sprintSpeed; 
+            canSprint = true;
+            sprintFill.color = sprintFillGreen;
+        }
         isRefilling = false;
     }
 }

@@ -15,6 +15,10 @@ public class FlashlightScript : MonoBehaviour
     public float drainSpeed = 5f;
 
     [SerializeField] Slider batterySlider;
+    [SerializeField] Image batterySliderImage;
+
+    public Color batterySliderGreen;
+    public Color batterySliderRed;
 
     Coroutine refillCoroutine;
 
@@ -75,7 +79,13 @@ public class FlashlightScript : MonoBehaviour
 
     IEnumerator RefillFlashlight(bool refillfromZero)
     {
-        if (refillfromZero) { flashlightCanBeEnabled = false; }
+        if (refillfromZero) 
+        { 
+            flashlightCanBeEnabled = false; 
+            batterySliderImage.color = batterySliderRed; 
+        }
+     
+       
         yield return new WaitForSeconds(0.5f);
 
         while(batteryPercent < 100f)
@@ -87,6 +97,10 @@ public class FlashlightScript : MonoBehaviour
 
         batteryPercent = 100f;
         batterySlider.value = batteryPercent;
-        if (refillfromZero) { flashlightCanBeEnabled = true; }
+        if (refillfromZero) 
+        { 
+            flashlightCanBeEnabled = true;
+            batterySliderImage.color = batterySliderGreen;
+        }
     }
 }
