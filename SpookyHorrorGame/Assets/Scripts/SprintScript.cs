@@ -2,6 +2,7 @@ using StarterAssets;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SprintScript : MonoBehaviour
@@ -30,7 +31,7 @@ public class SprintScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller._input.sprint && canSprint)
+        if (Keyboard.current.shiftKey.isPressed && canSprint)
         {
             if (energyPercent > 0)
             {

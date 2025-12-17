@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class FlashlightScript : MonoBehaviour
 {
-
     Light flashlightLight;
 
     bool flashlightEnabled = false;
