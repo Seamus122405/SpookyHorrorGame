@@ -6,17 +6,8 @@ public class DoorScript : MonoBehaviour, IInteractable
     [Tooltip("Check players position for opening against x or z axis")]
     public bool checkXAngle = true;
 
-    [Header("Z Only")]
-    [Tooltip("For z, where both directions will be the same")]
-    public float openAngle = 90f;
-
-    [Header("X Only")]
-    [Tooltip("For x, where pos might be 180 and neg might be 0")]
     public float openAnglePos = 180f;
-    [Tooltip("For x, where pos might be 180 and neg might be 0")]
     public float openAngleNeg = 0f;
-
-    [Header("Both")]
     public float closedAngle = 0f;
     public float timeToMove = 0.5f;
     public Transform player;
@@ -48,11 +39,11 @@ public class DoorScript : MonoBehaviour, IInteractable
             {
                 if (player.position.z > transform.parent.position.z) //player z > door z. rotate positive
                 {
-                    transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.x, openAngle, transform.parent.transform.rotation.z), timeToMove, RotateMode.Fast);
+                    transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.x, openAnglePos, transform.parent.transform.rotation.z), timeToMove, RotateMode.Fast);
                 }
                 else // player x <= door z. rotate negative
                 {
-                    transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.x, -openAngle, transform.parent.transform.rotation.z), timeToMove, RotateMode.Fast);
+                    transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.x, openAngleNeg, transform.parent.transform.rotation.z), timeToMove, RotateMode.Fast);
 
                 }
             }
