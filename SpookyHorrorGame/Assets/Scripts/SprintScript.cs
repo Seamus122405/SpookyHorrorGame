@@ -19,7 +19,7 @@ public class SprintScript : MonoBehaviour
 
     Coroutine refillCoroutine;
     bool isRefilling = false;
-    bool canSprint = true;
+    public bool canSprint = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

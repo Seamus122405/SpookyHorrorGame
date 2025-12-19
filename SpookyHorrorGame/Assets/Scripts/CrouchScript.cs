@@ -23,12 +23,15 @@ public class CrouchScript : MonoBehaviour
     bool isMoveUp = false;
     bool isUncrouched = true;
 
+    SprintScript sprintScript;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<FirstPersonController>();
         defaultWalkSpeed = controller.MoveSpeed;
         defaultSprintSpeed = controller.SprintSpeed;
+        sprintScript = GetComponent<SprintScript>();
     }
 
     // Update is called once per frame
@@ -40,7 +43,10 @@ public class CrouchScript : MonoBehaviour
             isMoveUp = false;
 
             controller.MoveSpeed = crouchingWalkSpeed;
-            controller.SprintSpeed = crouchingSprintSpeed;
+            if(sprintScript.canSprint)
+            {
+                controller.SprintSpeed = crouchingSprintSpeed;
+            }
 
             if (!isMoveDown && !isCrouched)
             {
@@ -55,7 +61,10 @@ public class CrouchScript : MonoBehaviour
             isMoveDown = false;
 
             controller.MoveSpeed = defaultWalkSpeed;
-            controller.SprintSpeed = defaultSprintSpeed;
+            if (sprintScript.canSprint)
+            {
+                controller.SprintSpeed = defaultSprintSpeed;
+            }
 
             if (!isMoveUp && !isUncrouched)
             {

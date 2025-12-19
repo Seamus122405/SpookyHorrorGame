@@ -13,6 +13,8 @@ public class FlashlightScript : MonoBehaviour
     public float batteryPercent = 100f;
     public float drainSpeed = 5f;
 
+    bool debugNoDrain = false;
+
     [SerializeField] Slider batterySlider;
     [SerializeField] Image batterySliderImage;
 
@@ -44,7 +46,12 @@ public class FlashlightScript : MonoBehaviour
             }
         }
 
-        if(flashlightEnabled)
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            debugNoDrain = !debugNoDrain;
+        }
+
+        if (flashlightEnabled && !debugNoDrain)
         {
             batteryPercent -= drainSpeed * Time.deltaTime;
             batterySlider.value = batteryPercent;

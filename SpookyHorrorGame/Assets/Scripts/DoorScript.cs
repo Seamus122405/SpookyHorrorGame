@@ -26,7 +26,6 @@ public class DoorScript : MonoBehaviour, IInteractable
             {
                 if(player.position.x > transform.parent.position.x) //player x > door x. rotate positive
                 {
-                    print("a");
                     transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.x, openAnglePos, transform.parent.transform.rotation.z), timeToMove, RotateMode.Fast);
                 }
                 else // player x <= door x. rotate negative
